@@ -1,0 +1,382 @@
+/**
+ * AI Service Selector Styles - Revamped
+ */
+
+.ai-service-selector {
+  display: none;
+  position: relative;
+  background: linear-gradient(145deg,
+      rgba(28, 28, 30, 0.98) 0%,
+      rgba(20, 20, 22, 0.98) 50%,
+      rgba(16, 16, 18, 0.98) 100%);
+  border: 2px solid var(--border-gold);
+  border-radius: 20px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.7),
+    0 0 40px rgba(232, 168, 56, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: visible;
+  -webkit-app-region: no-drag;
+  backdrop-filter: blur(40px) saturate(180%);
+  width: 560px;
+  padding: 32px;
+  margin-top: 8px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ai-service-selector.visible {
+  display: flex;
+  animation: fadeSlideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.service-selector-header {
+  text-align: center;
+  padding-bottom: 16px;
+  position: relative;
+}
+
+.header-icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+  display: inline-block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.service-selector-header h3 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 12px rgba(232, 168, 56, 0.2);
+  background: linear-gradient(135deg, #FFFFFF 0%, rgba(255, 255, 255, 0.9) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.service-selector-header p {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.3px;
+  font-weight: 500;
+}
+
+.service-options {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.service-card-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.service-card {
+  -webkit-app-region: no-drag;
+  display: block;
+  flex: 1;
+  padding: 0;
+  background: linear-gradient(135deg, rgba(42, 42, 44, 0.6), rgba(32, 32, 34, 0.6));
+  border: 1.5px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  cursor: default;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.service-card-glow {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center,
+      rgba(232, 168, 56, 0.15) 0%,
+      transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  padding: 1.5px;
+  background: linear-gradient(135deg, transparent, var(--border-gold), transparent);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover {
+  background: linear-gradient(135deg, rgba(58, 58, 62, 0.9), rgba(45, 45, 48, 0.9));
+  border-color: rgba(232, 168, 56, 0.5);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(232, 168, 56, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.service-card:hover .service-card-glow {
+  opacity: 1;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-card:hover::after {
+  opacity: 0.5;
+}
+
+.service-card:active {
+  transform: translateY(-2px) scale(1.01);
+  transition: all 0.1s ease;
+}
+
+/* Service-specific hover colors */
+.chatgpt-card:hover {
+  border-color: rgba(116, 195, 157, 0.5);
+}
+
+.gemini-card:hover {
+  border-color: rgba(66, 133, 244, 0.5);
+}
+
+.claude-card:hover {
+  border-color: rgba(204, 120, 92, 0.5);
+}
+
+.perplexity-card:hover {
+  border-color: rgba(28, 159, 181, 0.5);
+}
+
+.openrouter-card:hover {
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.service-card-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+}
+
+.service-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.service-logo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-logo {
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.service-card:hover .service-logo::before {
+  opacity: 1;
+}
+
+.service-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 8px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-card:hover .service-logo img {
+  transform: scale(1.1);
+}
+
+.service-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  background: linear-gradient(135deg, var(--primary-gold) 0%, var(--primary-gold-dark) 100%);
+  color: #1a1a1a;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.service-card:hover .service-badge {
+  transform: scale(1.08) rotate(3deg);
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.service-card:hover .service-badge::before {
+  opacity: 1;
+}
+
+.service-badge.claude {
+  background: linear-gradient(135deg, #D97757 0%, #B8664A 100%);
+  color: white;
+}
+
+.service-badge.perplexity {
+  background: linear-gradient(135deg, #20B2C5 0%, #1789A0 100%);
+  color: white;
+}
+
+.service-info {
+  flex: 1;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.service-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-name {
+  color: #FFFFFF;
+  transform: translateX(2px);
+}
+
+.service-provider {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.4px;
+  font-weight: 600;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-provider {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.service-description {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.2px;
+  font-weight: 500;
+  margin-top: 2px;
+  transition: all 0.3s ease;
+}
+
+.service-card:hover .service-description {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.service-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: rgba(255, 255, 255, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+}
+
+.service-card:hover .service-arrow {
+  color: var(--primary-gold);
+  background: rgba(232, 168, 56, 0.1);
+  transform: translateX(4px) scale(1.1);
+  box-shadow: 0 0 16px rgba(232, 168, 56, 0.3);
+}

@@ -1,0 +1,168 @@
+/**
+ * Settings Panel Styles
+ */
+
+.settings-panel {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 60px;
+  right: calc(50% - 300px);
+  width: 280px;
+  background: var(--bg-darker);
+  border: 1.5px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg), var(--shadow-gold);
+  overflow: hidden;
+  z-index: 100;
+  -webkit-app-region: no-drag;
+  backdrop-filter: blur(20px);
+  /* Hidden by default with opacity/visibility for smooth animations */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.settings-panel.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Fading out state - triggered before hiding */
+.settings-panel.fading {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.settings-header h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stealth-header-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.stealth-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.settings-content {
+  padding: 8px 10px;
+  padding-bottom: 6px;
+  overflow-y: visible;
+  overflow-x: hidden;
+}
+
+.settings-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.setting-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.setting-group label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 0.2px;
+}
+
+.setting-group select {
+  -webkit-app-region: no-drag;
+  padding: 6px 10px;
+  background: linear-gradient(180deg, rgba(55, 55, 58, 0.95) 0%, rgba(40, 40, 42, 0.95) 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: 500;
+  cursor: default;
+  min-width: 140px;
+  transition: all 0.15s ease;
+}
+
+.setting-group select:hover {
+  border-color: var(--border-gold);
+  background: linear-gradient(180deg, rgba(65, 65, 68, 0.95) 0%, rgba(50, 50, 52, 0.95) 100%);
+  box-shadow: 0 0 8px rgba(232, 168, 56, 0.15);
+}
+
+.setting-group select:focus {
+  outline: none;
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 10px rgba(232, 168, 56, 0.25);
+}
+
+.settings-divider {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 6px 0;
+}
+
+/* Settings Actions */
+.settings-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.settings-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(0, 0, 0, 0.2);
+  flex-shrink: 0;
+}
+
+.settings-footer .user-info {
+  font-size: 9px;
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-info {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.footer-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.footer-actions .btn {
+  font-size: 9px;
+  padding: 4px 8px;
+}
