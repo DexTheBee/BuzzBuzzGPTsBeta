@@ -1,0 +1,56 @@
+/**
+ * CSS Variables - Design Tokens
+ * Centralized color palette, spacing, and typography
+ */
+
+:root {
+  /* Color Palette - Warm Amber Theme */
+  --primary-gold: #E8A838;
+  --primary-gold-light: #FFD166;
+  --primary-gold-dark: #C98A1D;
+  --accent-orange: #F0B429;
+
+  /* Background Colors */
+  --bg-dark: rgba(28, 28, 30, 0.95);
+  --bg-darker: rgba(18, 18, 20, 0.98);
+  --bg-card: rgba(44, 44, 46, 0.9);
+  --bg-hover: rgba(58, 58, 60, 0.9);
+
+  /* Border Colors */
+  --border-gold: rgba(232, 168, 56, 0.6);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.2);
+
+  /* Text Colors */
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --text-gold: #E8A838;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-gold: 0 0 20px rgba(232, 168, 56, 0.3);
+
+  /* Spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Typography */
+  --font-main: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Neo-Brutalism Design Tokens */
+  --neo-border-black: #000000;
+  --neo-border-width: 2.5px;
+  --neo-shadow-black: #000000;
+  --neo-shadow-lg: 8px 8px 0px 0px var(--neo-shadow-black);
+  --neo-shadow-md: 4px 4px 0px 0px var(--neo-shadow-black);
+  --neo-shadow-sm: 2px 2px 0px 0px var(--neo-shadow-black);
+  --neo-shadow-hover: 2px 2px 0px 0px var(--neo-shadow-black);
+  --neo-transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}

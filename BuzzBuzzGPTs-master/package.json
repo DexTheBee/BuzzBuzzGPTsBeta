@@ -1,0 +1,116 @@
+{
+  "name": "buzzbuzzgpts",
+  "version": "1.0.0",
+  "description": "AI-powered overlay for ChatGPT, Gemini, and other AI assistants with screenshot capture and voice input",
+  "main": "main.js",
+  "homepage": "https://github.com/DexTheBee/BuzzBuzzGPTs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DexTheBee/BuzzBuzzGPTs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DexTheBee/BuzzBuzzGPTs/issues"
+  },
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "lint": "eslint *.js src/**/*.js",
+    "lint:fix": "eslint *.js src/**/*.js --fix",
+    "clean": "rimraf dist"
+  },
+  "keywords": [
+    "ai",
+    "chatgpt",
+    "gemini",
+    "overlay",
+    "screenshot",
+    "voice-input",
+    "electron"
+  ],
+  "author": "BuzzBuzz <contact@buzzbuzzgpts.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "electron": "^33.2.1",
+    "electron-builder": "^26.6.0",
+    "eslint": "^9.39.2",
+    "globals": "^15.13.0",
+    "png-to-ico": "^3.0.1",
+    "rimraf": "^5.0.5",
+    "sharp": "^0.34.5",
+    "to-ico": "^1.1.5"
+  },
+  "build": {
+    "appId": "com.buzzbuzzgpts.app",
+    "productName": "BuzzBuzzGPTs",
+    "copyright": "Copyright © 2026 ${author}",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "auth-preload.js",
+      "renderer.js",
+      "index.html",
+      "auth.html",
+      "auth.css",
+      "auth.js",
+      "styles.css",
+      ".env",
+      "set-window-stealth.js",
+      "screenshot-helper.js",
+      "dashboard.html",
+      "tutorial.html",
+      "src/**/*",
+      "public/**/*",
+      "logos/**/*",
+      "!**/*.md",
+      "!**/.*",
+      "!docs/**",
+      "!scripts/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "verifyUpdateCodeSignature": false,
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "BuzzBuzzGPTs",
+      "deleteAppDataOnUninstall": false,
+      "license": "LICENSE",
+      "warningsAsErrors": false
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.productivity",
+      "icon": "build/icon.icns"
+    },
+    "linux": {
+      "target": "AppImage",
+      "category": "Utility",
+      "icon": "build/icon.png"
+    }
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.93.3",
+    "dotenv": "^17.2.3"
+  }
+}

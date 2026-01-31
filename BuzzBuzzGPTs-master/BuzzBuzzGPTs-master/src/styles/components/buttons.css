@@ -1,0 +1,256 @@
+/**
+ * Button Styles
+ * All button variants and states
+ */
+
+/* Base Button */
+.btn {
+  -webkit-app-region: no-drag;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: var(--radius-full);
+  font-family: var(--font-main);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: default;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Pro Button */
+.btn-pro {
+  background: linear-gradient(180deg, #E8D038 0%, #D4BC20 50%, #C4AC18 100%);
+  color: #1a1a1a;
+  border: none;
+  padding: 6px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-pro:hover {
+  background: linear-gradient(180deg, #F0DC45 0%, #DCCA28 50%, #CCBA20 100%);
+  box-shadow: 0 3px 8px rgba(212, 188, 32, 0.4);
+}
+
+.btn-pro .pro-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: 700;
+  margin-left: 4px;
+}
+
+/* Start Interview Button */
+.btn-start {
+  background: linear-gradient(180deg, #3D3D3D 0%, #2A2A2A 100%);
+  color: #FFFFFF;
+  font-weight: 500;
+  padding: 6px 12px;
+  font-size: 10px;
+  letter-spacing: 0.3px;
+  border: 1.5px solid var(--border-gold);
+  border-radius: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-start span {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.btn-start:hover {
+  background: linear-gradient(180deg, #4A4A4A 0%, #353535 100%);
+  border-color: rgba(232, 168, 56, 0.8);
+  box-shadow: 0 3px 6px rgba(232, 168, 56, 0.3);
+}
+
+.btn-start:active {
+  background: linear-gradient(180deg, #2A2A2A 0%, #1F1F1F 100%);
+}
+
+.btn-start.active {
+  background: linear-gradient(180deg, #4A2A2A 0%, #351F1F 100%);
+  border-color: #FF5252;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+/* Icon Button */
+.btn-icon {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  font-size: 12px;
+}
+
+.btn-icon:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-gold);
+}
+
+/* Bee Icon (Drag Handle) */
+.bee-icon {
+  background: linear-gradient(180deg, #E8D038 0%, #D4BC20 100%);
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: default;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bee-logo-img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.bee-icon:hover {
+  background: linear-gradient(180deg, #F0DC45 0%, #DCCA28 100%);
+  box-shadow: 0 4px 12px rgba(212, 188, 32, 0.6);
+  transform: scale(1.15);
+}
+
+.bee-icon:active {
+  transform: scale(1.1);
+}
+
+.bee-icon.dragging {
+  transform: scale(1.2);
+  box-shadow: 0 6px 20px rgba(212, 188, 32, 0.8);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: linear-gradient(180deg, #E8D038 0%, #D4BC20 50%, #C4AC18 100%);
+  color: #1a1a1a;
+  border: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.15s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(180deg, #F0DC45 0%, #DCCA28 50%, #CCBA20 100%);
+  box-shadow: 0 3px 8px rgba(212, 188, 32, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  transform: translateY(1px) scale(0.98);
+  background: linear-gradient(180deg, #C4AC18 0%, #B09A10 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.btn-full {
+  width: 100%;
+}
+
+/* Accent Button */
+.btn-accent {
+  background: linear-gradient(135deg, var(--primary-gold) 0%, var(--accent-orange) 100%);
+  color: #000;
+  font-weight: 700;
+}
+
+.btn-accent:hover {
+  box-shadow: var(--shadow-gold);
+}
+
+/* Link Button */
+.btn-link {
+  background: linear-gradient(180deg, rgba(60, 60, 62, 0.9) 0%, rgba(44, 44, 46, 0.9) 100%);
+  color: var(--text-gold);
+  padding: 6px 12px;
+  border: 1px solid var(--border-gold);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.15s ease;
+}
+
+.btn-link:hover {
+  background: linear-gradient(180deg, rgba(80, 80, 82, 0.95) 0%, rgba(55, 55, 58, 0.95) 100%);
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 12px rgba(232, 168, 56, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-link:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: 0 0 4px rgba(232, 168, 56, 0.2);
+}
+
+/* Danger Button */
+.btn-danger {
+  background: linear-gradient(135deg, #FF4757 0%, #FF6B6B 100%);
+  color: white;
+}
+
+.btn-danger:hover {
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.4);
+}
+
+/* Centered modifier for single action buttons */
+.centered {
+  display: block;
+  margin: 0 auto;
+}
+
+/* Warning Button */
+.btn-warning {
+  background: linear-gradient(135deg, #E8A838 0%, #D4BC20 100%);
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.btn-warning:hover {
+  box-shadow: 0 4px 12px rgba(232, 168, 56, 0.4);
+  opacity: 0.9;
+}
+
+/* Primary Button */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary-gold), #D4BC20);
+  color: #1a1a1a;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #F0B848, #E0CC30);
+  transform: translateY(-1px);
+}
+
+/* Cancel Button */
+.btn-cancel {
+  width: 100%;
+  margin-top: 8px;
+}

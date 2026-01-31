@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https:; frame-src https:; child-src https:; object-src 'none';">
+  <title>Audio Enhancement Service</title>
+  <link rel="stylesheet" href="styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- Main Toolbar -->
+    <div class="toolbar initial-load" id="toolbar">
+      <div class="toolbar-content">
+        <!-- Left Section -->
+        <div class="toolbar-left">
+          <button class="btn btn-icon bee-icon" id="bee-btn" title="Assistant">
+            <img src="logos/BeeLogo.png" alt="Bee" class="bee-logo-img">
+          </button>
+
+          <button class="btn btn-start" id="start-btn" aria-label="Start">
+            <span>Start</span>
+          </button>
+        </div>
+
+        <!-- Right Section -->
+        <div class="toolbar-right">
+          <button class="btn btn-icon" id="settings-btn" title="Settings">
+            ⚙️
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Panel (Hidden by default) -->
+    <div class="settings-panel" id="settings-panel">
+      <div class="settings-header">
+        <h3>Settings</h3>
+        <div class="stealth-header-status">
+          <span class="stealth-label">Stealth Status</span>
+          <div class="stealth-status-value" id="stealth-status">
+            <span class="status-indicator checking"></span>
+            <span>Checking...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-content">
+        
+        <div class="settings-divider"></div>
+
+        <div class="setting-group">
+          <label>Display</label>
+          <select id="display-select">
+            <option value="0">Display 1 (Primary)</option>
+            <option value="1">Display 2 (Secondary)</option>
+          </select>
+        </div>
+
+        <div class="settings-divider"></div>
+
+        <div class="shortcuts-list">
+          <div class="shortcut-row">
+            <span>Hide Window Panel</span>
+            <div class="keys"><kbd>Alt</kbd><kbd>H</kbd></div>
+          </div>
+          <div class="shortcut-row">
+            <span>Take Screenshot</span>
+            <div class="keys"><kbd>Alt</kbd><kbd>S</kbd></div>
+          </div>
+          <div class="shortcut-row">
+            <span>Take Audio</span>
+            <div class="keys"><kbd>Alt</kbd><kbd>A</kbd></div>
+          </div>
+        </div>
+
+        <div class="settings-divider"></div>
+
+        <div class="settings-actions">
+          <button class="btn btn-start btn-full" id="tutorial-btn">Tutorial</button>
+        </div>
+      </div>
+
+      <div class="settings-footer">
+        <span class="user-info" id="user-info">Professional Assistant</span>
+        <div class="footer-actions">
+          <button class="btn btn-secondary" id="logout-btn" style="display: none;">Logout</button>
+          <button class="btn btn-danger" id="quit-btn">Quit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Service Selector (Hidden by default) -->
+    <div class="ai-service-selector" id="ai-service-selector">
+      <div class="service-selector-header">
+        <div class="header-icon">✨</div>
+        <h3>Choose Your AI Assistant</h3>
+        <p>Select the AI service to power your interview session</p>
+      </div>
+      <div class="service-options">
+        <button class="service-card chatgpt-card" data-service="chatgpt">
+          <div class="service-card-glow"></div>
+          <div class="service-card-content">
+            <div class="service-logo">
+              <img src="logos/icons8-chatgpt-100.png" alt="ChatGPT">
+            </div>
+            <div class="service-info">
+              <div class="service-name">ChatGPT</div>
+              <div class="service-provider">by OpenAI</div>
+              <div class="service-description">Advanced conversational AI</div>
+            </div>
+            <div class="service-arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        <button class="service-card gemini-card" data-service="gemini">
+          <div class="service-card-glow"></div>
+          <div class="service-card-content">
+            <div class="service-logo">
+              <img src="logos/gemini-color.png" alt="Gemini">
+            </div>
+            <div class="service-info">
+              <div class="service-name">Gemini</div>
+              <div class="service-provider">by Google</div>
+              <div class="service-description">Multimodal AI powerhouse</div>
+            </div>
+            <div class="service-arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        <button class="service-card claude-card" data-service="claude">
+          <div class="service-card-glow"></div>
+          <div class="service-card-content">
+            <div class="service-logo">
+              <img src="logos/claude-color.png" alt="Claude">
+            </div>
+            <div class="service-info">
+              <div class="service-name">Claude</div>
+              <div class="service-provider">by Anthropic</div>
+              <div class="service-description">Helpful & harmless AI</div>
+            </div>
+            <div class="service-arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        <button class="service-card perplexity-card" data-service="perplexity">
+          <div class="service-card-glow"></div>
+          <div class="service-card-content">
+            <div class="service-logo">
+              <img src="logos/perplexity-color.png" alt="Perplexity">
+            </div>
+            <div class="service-info">
+              <div class="service-name">Perplexity</div>
+              <div class="service-provider">by Perplexity AI</div>
+              <div class="service-description">Research & answers</div>
+            </div>
+            <div class="service-arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </button>
+
+        <button class="service-card openrouter-card" data-service="openrouter">
+          <div class="service-card-glow"></div>
+          <div class="service-card-content">
+            <div class="service-logo">
+              <img src="logos/openrouter-color.svg" alt="OpenRouter">
+            </div>
+            <div class="service-info">
+              <div class="service-name">OpenRouter</div>
+              <div class="service-provider">Unified LLM API</div>
+              <div class="service-description">300+ models, one interface</div>
+            </div>
+            <div class="service-arrow">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+          </div>
+        </button>
+      </div>
+      <button class="btn btn-secondary btn-cancel" id="cancel-service-selector">Cancel</button>
+    </div>
+
+    <!-- AI WebView Container (Hidden by default) -->
+    <div class="ai-webview-container" id="ai-webview-container">
+      <div class="webview-header">
+        <div class="webview-controls">
+          <button class="webview-btn" id="webview-back">←</button>
+          <button class="webview-btn" id="webview-forward">→</button>
+          <button class="webview-btn" id="webview-reload">⟳</button>
+          <span class="webview-url" id="webview-url">Loading AI...</span>
+        </div>
+
+        <!-- Action Buttons in Header -->
+        <div class="header-actions">
+          <button class="btn btn-screenshot" id="action-screenshot">
+            <svg stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none"
+              class="action-icon">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
+              </path>
+              <circle cx="12" cy="13" r="3" stroke-width="2"></circle>
+            </svg>
+            <span class="action-text">Screenshot</span>
+            <span class="action-shortcut">Ctrl+H</span>
+          </button>
+
+        </div>
+
+        <div class="webview-actions">
+          <button class="btn btn-secondary" id="webview-close">Close AI View</button>
+        </div>
+      </div>
+
+      <!-- allowpopups is required for AI services OAuth login flows (ChatGPT, Claude, etc.) -->
+      <webview id="ai-webview" src="https://chat.openai.com" partition="persist:ai-session" allowpopups
+        style="width: 100%; height: calc(100% - 50px);">
+      </webview>
+    </div>
+
+  </div>
+
+  <!-- Interactive Tutorial Components -->
+  <div class="tutorial-overlay" id="tutorial-overlay"></div>
+  <div class="tutorial-spotlight" id="tutorial-spotlight"></div>
+  <div class="tutorial-content" id="tutorial-content">
+    <img src="logos/wave-bee.png" id="tutorial-guide-bee" class="tutorial-guide-bee" alt="Guide Bee">
+    <button class="tutorial-close" id="tutorial-close">×</button>
+    <div class="tutorial-step-indicator">
+      <span class="step-current">1</span> / <span class="step-total">6</span>
+    </div>
+    <div class="tutorial-icon" id="tutorial-icon">👋</div>
+    <h3 class="tutorial-title" id="tutorial-title">Welcome!</h3>
+    <p class="tutorial-description" id="tutorial-description">Let's learn how to use BuzzBuzzGPTs</p>
+    <div class="tutorial-navigation">
+      <button class="btn btn-secondary" id="tutorial-skip">Skip</button>
+      <div class="tutorial-nav-buttons">
+        <button class="btn btn-secondary" id="tutorial-prev" disabled>← Prev</button>
+        <button class="btn btn-primary" id="tutorial-next">Next →</button>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="renderer.js"></script>
+</body>
+
+</html>

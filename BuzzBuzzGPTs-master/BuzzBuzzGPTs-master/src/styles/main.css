@@ -1,0 +1,207 @@
+/**
+ * Open Interview Coder - Main Stylesheet
+ * Imports all component stylesheets
+ */
+
+/* Design Tokens */
+@import './variables.css';
+
+/* Base Styles */
+@import './base.css';
+
+/* Utilities */
+@import './utils/animations.css';
+
+/* Components */
+@import './components/toolbar.css';
+@import './components/buttons.css';
+@import './components/settings.css';
+@import './components/tutorial.css';
+@import './components/service-selector.css';
+@import './components/webview.css';
+
+/* Additional Component Styles - Shortcuts */
+.shortcut-btn {
+  -webkit-app-region: no-drag;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  background: linear-gradient(180deg, #3D3D3D 0%, #2A2A2A 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  cursor: default;
+  transition: all 0.2s ease;
+}
+
+.shortcut-btn:hover {
+  background: linear-gradient(180deg, #4A4A4A 0%, #353535 100%);
+  border-color: var(--border-gold);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(232, 168, 56, 0.2);
+}
+
+.shortcut-label {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.2px;
+}
+
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 20px;
+  padding: 2px 6px;
+  background: linear-gradient(180deg, #3D3D3D 0%, #2A2A2A 100%);
+  border: 1px solid #4A4A4A;
+  border-radius: 4px;
+  font-family: var(--font-main);
+  font-size: 9px;
+  font-weight: 600;
+  color: #E8A838;
+  letter-spacing: 0.3px;
+}
+
+/* Shortcuts List */
+.shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shortcut-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 8px;
+  background: rgba(44, 44, 46, 0.4);
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+  cursor: default;
+  border: 1px solid transparent;
+}
+
+.shortcut-row:hover {
+  background: rgba(52, 52, 54, 0.5);
+  border-color: rgba(232, 168, 56, 0.3);
+}
+
+.shortcut-row span {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.shortcut-row .keys {
+  display: flex;
+  gap: 4px;
+}
+
+.shortcut-row kbd {
+  min-width: 22px;
+  height: 20px;
+  font-size: 9px;
+  font-weight: 600;
+  padding: 2px 6px;
+  background: linear-gradient(180deg, rgba(70, 70, 72, 0.9) 0%, rgba(50, 50, 52, 0.9) 100%);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  cursor: default;
+}
+
+.shortcut-row kbd:hover {
+  background: linear-gradient(180deg, rgba(80, 80, 82, 0.95) 0%, rgba(60, 60, 62, 0.95) 100%);
+  border-color: var(--border-gold);
+  box-shadow: 0 0 8px rgba(232, 168, 56, 0.3);
+  transform: translateY(-1px);
+}
+
+.shortcut-row kbd:active {
+  transform: translateY(2px) scale(0.95);
+  background: linear-gradient(180deg, rgba(40, 40, 42, 0.95) 0%, rgba(30, 30, 32, 0.95) 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Status Indicators */
+.stealth-status-value {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-indicator.active {
+  background: #4CAF50;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.5);
+}
+
+.status-indicator.disabled {
+  background: #FF5252;
+}
+
+.status-indicator.checking {
+  background: #FFA726;
+  animation: statusBlink 1s ease-in-out infinite;
+}
+
+/* Display Cards */
+.display-cards-container {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.display-card {
+  -webkit-app-region: no-drag;
+  flex: 1;
+  min-width: 100px;
+  padding: 12px;
+  background: var(--bg-card);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: default;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.display-card:hover {
+  border-color: var(--border-gold);
+  background: var(--bg-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.display-card.selected {
+  border-color: var(--primary-gold);
+  background: linear-gradient(135deg, rgba(232, 168, 56, 0.15), rgba(232, 168, 56, 0.05));
+  box-shadow: var(--shadow-gold);
+}
+
+.display-card-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-gold);
+  margin-bottom: 4px;
+}
+
+.display-card-info {
+  font-size: 10px;
+  color: var(--text-secondary);
+}

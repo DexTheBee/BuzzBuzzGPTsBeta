@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download BuzzBuzzGPTs - AI Interview Assistant</title>
+    <meta name="description" content="Download BuzzBuzzGPTs, an AI-powered interview assistant with voice transcription and screenshot capture">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(145deg, #1f1f21, #2d2d30);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #ffd93d 50%, #e8a838 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .tagline {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+        }
+
+        .download-section {
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
+            border: 3px solid #e8a838;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 40px;
+            text-align: center;
+        }
+
+        .version-info {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .version-info span {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 50px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .download-btn::before {
+            content: "📥 ";
+        }
+
+        .checksum-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .checksum-box h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .checksum-value {
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            word-break: break-all;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .verify-command {
+            background: #2d2d30;
+            color: #a9dc76;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px;
+        }
+
+        .warning-box h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .warning-box h3::before {
+            content: "⚠️ ";
+        }
+
+        .warning-box ol {
+            margin: 15px 0 15px 25px;
+            color: #856404;
+        }
+
+        .warning-box li {
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .warning-box strong {
+            color: #664d03;
+        }
+
+        .features-section {
+            padding: 40px;
+        }
+
+        .features-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .feature-card {
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: #e8a838;
+        }
+
+        .feature-card .icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .requirements {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .requirements h3 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .requirements ul {
+            list-style: none;
+        }
+
+        .requirements li {
+            padding: 10px 0;
+            color: #555;
+            font-size: 16px;
+        }
+
+        .requirements li::before {
+            content: "✅ ";
+            margin-right: 10px;
+        }
+
+        .support-section {
+            background: linear-gradient(145deg, #1f1f21, #2d2d30);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .support-section h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .support-links a {
+            display: inline-block;
+            margin: 10px;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .support-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .download-section,
+            .warning-box,
+            .features-section {
+                margin: 20px;
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🐝 BuzzBuzzGPTs</h1>
+            <p class="tagline">AI-Powered Interview Assistant</p>
+        </div>
+
+        <!-- Download Section -->
+        <div class="download-section">
+            <h2>Download BuzzBuzzGPTs</h2>
+            
+            <div class="version-info">
+                <span><strong>Version:</strong> 1.0.0</span>
+                <span><strong>Released:</strong> January 22, 2026</span>
+                <span><strong>Size:</strong> ~200 MB</span>
+                <span><strong>Platform:</strong> Windows 10/11 (64-bit)</span>
+            </div>
+
+            <a href="/downloads/BuzzBuzzGPTs-Setup-1.0.0.exe" class="download-btn">
+                Download BuzzBuzzGPTs Setup
+            </a>
+
+            <div class="checksum-box">
+                <h3>🔒 File Verification (SHA256)</h3>
+                <p>Verify your download hasn't been tampered with:</p>
+                <div class="checksum-value">
+                    dc811c04419143fb99b1444c6e109470d0d0ff30331468baaea674647e7835b5
+                </div>
+                <p><strong>To verify in PowerShell:</strong></p>
+                <div class="verify-command">
+                    Get-FileHash "BuzzBuzzGPTs-Setup-1.0.0.exe" -Algorithm SHA256
+                </div>
+            </div>
+        </div>
+
+        <!-- SmartScreen Warning -->
+        <div class="warning-box">
+            <h3>Important: Windows SmartScreen Warning</h3>
+            <p>Windows will show a security warning because this app is not digitally signed. <strong>This is normal for open-source software</strong> and doesn't mean the software is unsafe.</p>
+            
+            <p style="margin-top: 20px;"><strong>To install:</strong></p>
+            <ol>
+                <li>Click <strong>"More info"</strong> on the Windows Defender SmartScreen warning</li>
+                <li>Click the <strong>"Run anyway"</strong> button that appears</li>
+                <li>Follow the installation wizard</li>
+            </ol>
+
+            <p style="margin-top: 20px;">
+                <strong>Why isn't it signed?</strong> Code signing certificates cost $100-300/year. 
+                As an open-source project, we keep the software free instead of passing that cost to users.
+                You can verify the app is safe by checking our <a href="https://github.com/yourusername/BuzzBuzzGPTs" style="color: #664d03;">open source code</a>.
+            </p>
+        </div>
+
+        <!-- Features -->
+        <div class="features-section">
+            <h2>✨ Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon">📸</div>
+                    <h3>Screenshot Capture</h3>
+                    <p>Press Ctrl+H to capture your screen and automatically paste into AI chat</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🎤</div>
+                    <h3>Voice Transcription</h3>
+                    <p>Press Ctrl+R for live speech-to-text. Auto-submits after 3 seconds of silence</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🤖</div>
+                    <h3>Multi-AI Support</h3>
+                    <p>Works with ChatGPT, Claude, Gemini, and Perplexity</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">👻</div>
+                    <h3>Stealth Mode</h3>
+                    <p>Invisible in screen recordings. Perfect for interviews</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">⌨️</div>
+                    <h3>Global Shortcuts</h3>
+                    <p>Control everything with keyboard shortcuts. Never leave your interview screen</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="icon">🎨</div>
+                    <h3>Clean UI</h3>
+                    <p>Minimal floating toolbar. Drag to position anywhere on screen</p>
+                </div>
+            </div>
+
+            <!-- System Requirements -->
+            <div class="requirements">
+                <h3>💻 System Requirements</h3>
+                <ul>
+                    <li>Windows 10 or Windows 11 (64-bit)</li>
+                    <li>4 GB RAM minimum (8 GB recommended)</li>
+                    <li>500 MB free disk space</li>
+                    <li>1920x1080 or higher display recommended</li>
+                    <li>Internet connection for AI features</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Support Section -->
+        <div class="support-section">
+            <h3>📚 Getting Help</h3>
+            <p>Need assistance or found a bug?</p>
+            <div class="support-links">
+                <a href="INSTALL.md" target="_blank">📖 Installation Guide</a>
+                <a href="https://github.com/yourusername/BuzzBuzzGPTs" target="_blank">💻 GitHub Repository</a>
+                <a href="https://github.com/yourusername/BuzzBuzzGPTs/issues" target="_blank">🐛 Report Issues</a>
+            </div>
+            <p style="margin-top: 30px; color: rgba(255,255,255,0.7); font-size: 14px;">
+                BuzzBuzzGPTs is open source and free forever. 
+                View the code, contribute, or build your own version!
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>BuzzBuzzGPTs v1.0.0 | MIT License | © 2026</p>
+            <p style="margin-top: 10px; color: #999; font-size: 12px;">
+                Use responsibly and ethically. For practice and educational purposes.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

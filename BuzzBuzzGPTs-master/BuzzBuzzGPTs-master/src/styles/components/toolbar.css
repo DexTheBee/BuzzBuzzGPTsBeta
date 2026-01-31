@@ -1,0 +1,44 @@
+/**
+ * Toolbar Styles
+ * Main application toolbar and controls
+ */
+
+.toolbar {
+  background: linear-gradient(180deg, #2D2D2D 0%, #1F1F1F 100%);
+  border: 1.5px solid var(--border-gold);
+  border-radius: var(--radius-full);
+  padding: 4px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), var(--shadow-gold);
+  -webkit-app-region: drag;
+  backdrop-filter: blur(20px);
+  box-sizing: border-box;
+  width: fit-content;
+}
+
+.toolbar-content {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.toolbar-left,
+.toolbar-center,
+.toolbar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.toolbar-center {
+  display: flex;
+  justify-content: flex-start;
+  margin-left: 6px;
+  gap: 8px;
+}
+
+.toolbar-right {
+  gap: 6px;
+  margin-left: 4px;
+}

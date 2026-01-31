@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuzzBuzzGPTs - Tutorial</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a1a1c 0%, #2d2d30 100%);
+      color: #ffffff;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(135deg, #E8A838 0%, #FFD166 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 20px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 40px;
+    }
+
+    .section {
+      background: rgba(44, 44, 46, 0.9);
+      border: 1px solid rgba(232, 168, 56, 0.3);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    h2 {
+      font-size: 28px;
+      color: #E8A838;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h3 {
+      font-size: 20px;
+      color: #FFD166;
+      margin: 20px 0 10px;
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 15px;
+    }
+
+    ul,
+    ol {
+      margin-left: 30px;
+      margin-bottom: 15px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    kbd {
+      background: linear-gradient(180deg, rgba(70, 70, 72, 0.9) 0%, rgba(50, 50, 52, 0.9) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      padding: 3px 8px;
+      font-family: monospace;
+      font-size: 13px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: rgba(58, 58, 60, 0.5);
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+      background: rgba(70, 70, 72, 0.6);
+      transform: translateX(5px);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .feature-content h4 {
+      color: #FFD166;
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    .feature-content p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .shortcut-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    .shortcut-table th,
+    .shortcut-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .shortcut-table th {
+      background: rgba(232, 168, 56, 0.2);
+      color: #E8A838;
+      font-weight: 600;
+    }
+
+    .shortcut-table tr:hover {
+      background: rgba(58, 58, 60, 0.5);
+    }
+
+    .tip {
+      background: rgba(232, 168, 56, 0.1);
+      border-left: 4px solid #E8A838;
+      padding: 15px 20px;
+      margin: 20px 0;
+      border-radius: 4px;
+    }
+
+    .tip strong {
+      color: #E8A838;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>🐝 BuzzBuzzGPTs Tutorial</h1>
+    <p class="subtitle">Master your AI-powered interview assistant in minutes</p>
+
+    <!-- Getting Started -->
+    <div class="section">
+      <h2>🚀 Getting Started</h2>
+      <p>Welcome to BuzzBuzzGPTs! This powerful tool helps you during coding interviews by integrating AI
+        assistance directly into your workflow.</p>
+
+      <h3>First Steps:</h3>
+      <ol>
+        <li>Click the <strong>Start Interview</strong> button in the main menu</li>
+        <li>Select your preferred AI service (ChatGPT, Gemini, Claude, or Perplexity)</li>
+        <li>Log in to the AI service in the embedded browser</li>
+        <li>You're ready to go!</li>
+      </ol>
+    </div>
+
+    <!-- Key Features -->
+    <div class="section">
+      <h2>✨ Key Features</h2>
+
+      <div class="feature">
+        <div class="feature-icon">🐝</div>
+        <div class="feature-content">
+          <h4>Draggable Bee Button</h4>
+          <p>Click and drag the bee icon to reposition the entire menu anywhere on your screen. Perfect for keeping it
+            out of the way during screen shares!</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">📸</div>
+        <div class="feature-content">
+          <h4>Instant Screenshots</h4>
+          <p>Press <kbd>Ctrl</kbd>+<kbd>H</kbd> to capture your screen and automatically paste it into the AI chat. No
+            manual copy-paste needed!</p>
+        </div>
+      </div>
+
+
+
+      <div class="feature">
+        <div class="feature-icon">🕶️</div>
+        <div class="feature-content">
+          <h4>Stealth Mode</h4>
+          <p>The app is invisible in screen recordings and screen shares (Windows 10+). Your interviewer won't see the
+            overlay!</p>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">⚙️</div>
+        <div class="feature-content">
+          <h4>API Key Management</h4>
+          <p>Store API keys for Gemini, Claude, and Perplexity. Each AI service has its own settings dropdown. ChatGPT
+            uses your logged-in session.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keyboard Shortcuts -->
+    <div class="section">
+      <h2>⌨️ Keyboard Shortcuts</h2>
+      <p>Master these shortcuts for maximum efficiency:</p>
+
+      <table class="shortcut-table">
+        <thead>
+          <tr>
+            <th>Action</th>
+            <th>Shortcut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Show/Hide Menu</td>
+            <td><kbd>Ctrl</kbd> + <kbd>B</kbd></td>
+          </tr>
+          <tr>
+            <td>Take Screenshot</td>
+            <td><kbd>Ctrl</kbd> + <kbd>H</kbd></td>
+          </tr>
+
+          <tr>
+            <td>Move Menu Up</td>
+            <td><kbd>Ctrl</kbd> + <kbd>↑</kbd></td>
+          </tr>
+          <tr>
+            <td>Move Menu Down</td>
+            <td><kbd>Ctrl</kbd> + <kbd>↓</kbd></td>
+          </tr>
+          <tr>
+            <td>Move Menu Left</td>
+            <td><kbd>Ctrl</kbd> + <kbd>←</kbd></td>
+          </tr>
+          <tr>
+            <td>Move Menu Right</td>
+            <td><kbd>Ctrl</kbd> + <kbd>→</kbd></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Settings -->
+    <div class="section">
+      <h2>⚙️ Customizing Settings</h2>
+      <p>Click the gear icon to access settings:</p>
+
+      <h3>🖥️ Display Selection</h3>
+      <p>Choose which monitor to use for screenshots. Click a display option to see a blue overlay on the physical
+        monitor.</p>
+
+      <h3>🌐 Language Settings</h3>
+      <ul>
+        <li><strong>Output Language:</strong> The language AI responses should use</li>
+        <li><strong>Code Language:</strong> Your preferred programming language</li>
+      </ul>
+
+      <h3>🔑 API Keys</h3>
+      <p>Each AI service (ChatGPT, Gemini, Claude, Perplexity) has an API key button. Click it to add your API key for
+        advanced analysis features.</p>
+    </div>
+
+    <!-- Tips & Best Practices -->
+    <div class="section">
+      <h2>💡 Pro Tips</h2>
+
+      <div class="tip">
+        <strong>Tip 1:</strong> Position the menu at the edge of your screen before starting the interview. Use the bee
+        button to drag it where it's least distracting.
+      </div>
+
+      <div class="tip">
+        <strong>Tip 2:</strong> Test your screenshot function before the interview to ensure it captures the right
+        display.
+      </div>
+
+
+
+      <div class="tip">
+        <strong>Tip 4:</strong> You can use <kbd>Ctrl</kbd>+<kbd>B</kbd> to quickly hide/show the entire interface
+        during critical moments.
+      </div>
+
+      <div class="tip">
+        <strong>Tip 5:</strong> The app is click-through by default, so you can click through transparent areas without
+        interacting with the overlay.
+      </div>
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="section">
+      <h2>🔧 Troubleshooting</h2>
+
+
+
+      <h3>Screenshots not capturing?</h3>
+      <ul>
+        <li>Check which display is selected in Settings → Display</li>
+        <li>Try the blue overlay test to confirm the correct monitor</li>
+        <li>Restart the app if the screenshot function stops working</li>
+      </ul>
+
+      <h3>AI webview not loading?</h3>
+      <ul>
+        <li>Check your internet connection</li>
+        <li>Try selecting a different AI service</li>
+        <li>Clear your browser cache in the AI service settings</li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="section">
+      <h2>📧 Need Help?</h2>
+      <p>If you encounter issues or have questions:</p>
+      <ul>
+        <li>📚 Documentation: <a href="https://github.com/yourusername/buzzbuzzgpts" style="color: #E8A838;">GitHub
+            Repository</a></li>
+        <li>💬 Community: Join our Discord server</li>
+        <li>🐛 Report bugs: Open an issue on GitHub</li>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html>

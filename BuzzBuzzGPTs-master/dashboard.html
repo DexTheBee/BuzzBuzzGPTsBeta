@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuzzBuzzGPTs - Dashboard</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary: #E8A838;
+      --primary-glow: rgba(232, 168, 56, 0.4);
+      --bg-dark: #0f0f11;
+      --bg-card: rgba(26, 26, 29, 0.8);
+      --text-main: #f0f0f0;
+      --text-dim: rgba(240, 240, 240, 0.6);
+      --border: rgba(232, 168, 56, 0.2);
+      --glass: rgba(255, 255, 255, 0.03);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-dark);
+      background-image:
+        radial-gradient(circle at 10% 20%, rgba(232, 168, 56, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(232, 168, 56, 0.05) 0%, transparent 40%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      height: 100vh;
+      background: rgba(15, 15, 17, 0.95);
+      border-right: 1px solid var(--border);
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 50px;
+      padding: 0 10px;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .logo-text {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      list-style: none;
+      flex: 1;
+    }
+
+    .nav-item {
+      margin-bottom: 8px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 14px 18px;
+      color: var(--text-dim);
+      text-decoration: none;
+      border-radius: 12px;
+      transition: var(--transition);
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: var(--glass);
+      color: var(--primary);
+    }
+
+    .nav-link.active {
+      border-left: 3px solid var(--primary);
+    }
+
+    .sidebar-footer {
+      padding: 20px 10px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 40px 60px;
+      max-width: 1400px;
+    }
+
+    header {
+      margin-bottom: 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: var(--text-dim);
+      font-size: 16px;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 15px var(--primary-glow);
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at top right, var(--primary-glow), transparent 70%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+
+    .stat-icon {
+      font-size: 24px;
+      margin-bottom: 15px;
+      background: var(--glass);
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 14px;
+      color: var(--primary);
+    }
+
+    .stat-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Charts Section */
+    .charts-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .chart-container {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      height: 350px;
+      /* Fixed height for Chart.js responsiveness */
+      width: 100%;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .chart-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    /* Activity & Achievements */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 24px;
+    }
+
+    .section-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .activity-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .activity-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 16px;
+      background: var(--glass);
+      border-radius: 16px;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .activity-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: var(--border);
+    }
+
+    .activity-indicator {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: var(--primary-glow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+
+    .activity-info {
+      flex: 1;
+    }
+
+    .activity-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .activity-time {
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* Achievements */
+    .badges-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 15px;
+    }
+
+    .badge-card {
+      background: var(--glass);
+      padding: 20px 15px;
+      border-radius: 20px;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: var(--transition);
+    }
+
+    .badge-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--primary);
+    }
+
+    .badge-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+      filter: grayscale(1);
+      opacity: 0.5;
+      transition: var(--transition);
+    }
+
+    .badge-card.unlocked .badge-icon {
+      filter: none;
+      opacity: 1;
+    }
+
+    .badge-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .badge-card.unlocked .badge-name {
+      color: var(--primary);
+    }
+
+    @media (max-width: 1200px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .charts-row,
+      .bottom-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="sidebar">
+    <div class="logo">
+      <img src="logos/BeeLogo.png" alt="Logo">
+      <span class="logo-text">BuzzBuzzGPTs</span>
+    </div>
+    <ul class="nav-links">
+      <li class="nav-item">
+        <a href="#" class="nav-link active">
+          <span>📊</span> Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span>📅</span> Sessions
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <span>⚙️</span> Settings
+        </a>
+      </li>
+    </ul>
+    <div class="sidebar-footer">
+      <p>Open Source Edition</p>
+      <p>v1.2.0</p>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <header>
+      <div>
+        <h1>Dashboard</h1>
+        <p class="subtitle">Overview of your performance and activity.</p>
+      </div>
+      <div id="date-display" style="font-weight: 500; color: var(--text-dim);">January 23, 2026</div>
+    </header>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">🎯</div>
+        <div class="stat-value" id="sessions-count">0</div>
+        <div class="stat-label">Total Sessions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📸</div>
+        <div class="stat-value" id="screenshots-count">0</div>
+        <div class="stat-label">Screenshots</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⏱️</div>
+        <div class="stat-value" id="total-time">0h 0m</div>
+        <div class="stat-label">Total Study Time</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⚡</div>
+        <div class="stat-value" id="avg-duration">0m</div>
+        <div class="stat-label">Avg. Session</div>
+      </div>
+    </div>
+
+    <div class="charts-row">
+      <div class="chart-container">
+        <div class="chart-header">
+          <div class="chart-title">Activity Insights</div>
+        </div>
+        <canvas id="activityChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <div class="chart-header">
+          <div class="chart-title">AI Preference</div>
+        </div>
+        <canvas id="aiChart"></canvas>
+      </div>
+    </div>
+
+    <div class="bottom-row">
+      <div class="section-card">
+        <div class="chart-header">
+          <div class="chart-title">Recent Activity</div>
+        </div>
+        <div class="activity-list" id="activity-list">
+          <!-- Populated by JS -->
+          <div class="activity-item">
+            <div class="activity-indicator">🚀</div>
+            <div class="activity-info">
+              <div class="activity-title">New Session Started</div>
+              <div class="activity-time">Just now</div>
+            </div>
+          </div>
+          <div class="activity-item">
+            <div class="activity-indicator">📸</div>
+            <div class="activity-info">
+              <div class="activity-title">Screenshot Captured</div>
+              <div class="activity-time">2 hours ago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="chart-header">
+          <div class="chart-title">Achievements</div>
+        </div>
+        <div class="badges-grid">
+          <div class="badge-card unlocked">
+            <div class="badge-icon">🎯</div>
+            <div class="badge-name">Pioneer</div>
+          </div>
+          <div class="badge-card unlocked">
+            <div class="badge-icon">📸</div>
+            <div class="badge-name">Visual Learner</div>
+          </div>
+          <div class="badge-card">
+            <div class="badge-icon">🔥</div>
+            <div class="badge-name">7 Day Streak</div>
+          </div>
+          <div class="badge-card">
+            <div class="badge-icon">👑</div>
+            <div class="badge-name">Master</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set current date
+      const options = { month: 'long', day: 'numeric', year: 'numeric' };
+      document.getElementById('date-display').textContent = new Date().toLocaleDateString('en-US', options);
+
+      // Load Stats
+      const stats = {
+        sessions: parseInt(localStorage.getItem('oi-sessions') || 24),
+        screenshots: parseInt(localStorage.getItem('oi-screenshots') || 156),
+        totalMinutes: parseInt(localStorage.getItem('oi-total-minutes') || 1240),
+        aiUsage: JSON.parse(localStorage.getItem('oi-ai-usage') || '{"ChatGPT": 65, "Gemini": 20, "Claude": 10, "Perplexity": 5}')
+      };
+
+      // Animate Stats
+      animateValue("sessions-count", 0, stats.sessions, 1000);
+      animateValue("screenshots-count", 0, stats.screenshots, 1000);
+
+      const hours = Math.floor(stats.totalMinutes / 60);
+      const mins = stats.totalMinutes % 60;
+      document.getElementById('total-time').textContent = `${hours}h ${mins}m`;
+      document.getElementById('avg-duration').textContent = `${Math.round(stats.totalMinutes / (stats.sessions || 1))}m`;
+
+      // Initialize Activity Chart
+      const activityCtx = document.getElementById('activityChart').getContext('2d');
+      new Chart(activityCtx, {
+        type: 'line',
+        data: {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          datasets: [{
+            label: 'Sessions',
+            data: [4, 6, 5, 8, 12, 7, 10],
+            borderColor: '#E8A838',
+            backgroundColor: 'rgba(232, 168, 56, 0.1)',
+            fill: true,
+            tension: 0.4,
+            borderWidth: 3,
+            pointBackgroundColor: '#E8A838',
+            pointRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: 'rgba(255, 255, 255, 0.5)' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { color: 'rgba(255, 255, 255, 0.5)' }
+            }
+          }
+        }
+      });
+
+      // Initialize AI Preference Chart
+      const aiCtx = document.getElementById('aiChart').getContext('2d');
+      new Chart(aiCtx, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(stats.aiUsage),
+          datasets: [{
+            data: Object.values(stats.aiUsage),
+            backgroundColor: [
+              '#E8A838',
+              '#4285F4',
+              '#D97757',
+              '#20B2AA'
+            ],
+            borderWidth: 0,
+            hoverOffset: 10
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '75%',
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                color: 'rgba(255, 255, 255, 0.7)',
+                padding: 20,
+                usePointStyle: true,
+                font: { size: 11 }
+              }
+            }
+          }
+        }
+      });
+    });
+
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+  </script>
+</body>
+
+</html>
